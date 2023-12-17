@@ -11,7 +11,7 @@ Here you will learn to use CDK to deploy different AWS resources. All the `sampl
      - Python Pip - `yum install -y python-pip`
      - Virtualenv - `pip3 install virtualenv`
 
-1. ## ⚙️ Setting up the environment
+2. ## ⚙️ Setting up the environment
 
    For example, If you are looking to learn how to deploy an EC2 instance with the latest AMI in any region, This branch is tagged as `ec2_with_latest_ami_in_any_region`.
 
@@ -20,7 +20,7 @@ Here you will learn to use CDK to deploy different AWS resources. All the `sampl
    cd my-first-cdk-project
    ```
 
-1. ## 🚀 Deployment using AWS CDK
+3. ## 🚀 Deployment using AWS CDK
 
    ```bash
    # If you DONT have cdk installed
@@ -31,7 +31,8 @@ Here you will learn to use CDK to deploy different AWS resources. All the `sampl
 
    # Make sure you in root directory
    python3 -m venv .env
-   source .env/bin/activate
+   #   source .env/bin/activate
+   source .venv/Scripts/activate
    # Install any dependencies
    pip install -r requirements.txt
 
@@ -40,7 +41,7 @@ Here you will learn to use CDK to deploy different AWS resources. All the `sampl
    cdk deploy
    ```
 
-1. ## 🧹 CleanUp
+4. ## 🧹 CleanUp
 
    If you want to destroy all the resources created by the stack, Execute the below command to delete the stack, or _you can delete the stack from console as well_
 

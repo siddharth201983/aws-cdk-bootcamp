@@ -26,3 +26,9 @@ aws_cdk.aws_kinesis
 aws_cdk.aws_lambda_event_sources
 aws_cdk.aws_ecs
 aws_cdk.aws_ecs_patterns
+setuptools>=68.2.0
+pip>=23.2.1
+attrs>=23.1.0
+wheel>=0.41.2
+typing_extensions>=4.9.0
+constructs>=3.4.344
