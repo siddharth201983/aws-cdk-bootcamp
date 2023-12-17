@@ -140,7 +140,6 @@ dmypy.json
 .DS_Store
 node_modules/
 lerna-debug.log
-dist/
 pack/
 .BUILD_COMPLETED
 .local-npm/
