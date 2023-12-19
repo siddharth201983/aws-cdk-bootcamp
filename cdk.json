@@ -2,6 +2,7 @@
   "app": "python3 app.py",
   "versionReporting": false,
   "requireApproval": "never",
+  "JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION": false,
   "context": {
     "owner": "Mystique",
     "github_repo_url": "https://github.com/miztiik/my-first-cdk-project",
