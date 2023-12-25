@@ -5,10 +5,10 @@ import aws_cdk as cdk
 
 from my_first_cdk_project.my_first_cdk_project_stack import MyArtifactBucketStack
 app = cdk.App()
-env_US = cdk.Environment(account="751021670495", region=app.node.try_get_context('dev')['region'])
-env_AU = cdk.Environment(account="751021670495", region=app.node.try_get_context('prod')['region'])
+env_US = cdk.Environment(account=app.node.try_get_context('dev')['account'], region=app.node.try_get_context('dev')['region'])
+env_AU = cdk.Environment(account=app.node.try_get_context('dev')['account'], region=app.node.try_get_context('prod')['region'])
 
-print(app.node.try_get_context('dev')['region'])
+print(app.node.try_get_context('dev')['account'])
 MyArtifactBucketStack(app, "myDevStack", env=env_US
                       # If you don't specify 'env', this stack will be environment-agnostic.
                       # Account/Region-dependent features and context lookups will not work,
