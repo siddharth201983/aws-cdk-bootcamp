@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # import os
-
 import aws_cdk as cdk
 
 from my_first_cdk_project.my_first_cdk_project_stack import MyArtifactBucketStack
 app = cdk.App()
 env_US = cdk.Environment(account=app.node.try_get_context('dev')['account'], region=app.node.try_get_context('dev')['region'])
-env_AU = cdk.Environment(account=app.node.try_get_context('dev')['account'], region=app.node.try_get_context('prod')['region'])
+env_AU = cdk.Environment(account=app.node.try_get_context('prod')['account'], region=app.node.try_get_context('prod')['region'])
 
 print(app.node.try_get_context('dev')['account'])
 MyArtifactBucketStack(app, "myDevStack", env=env_US
