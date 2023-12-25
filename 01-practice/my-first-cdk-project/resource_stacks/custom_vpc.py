@@ -35,8 +35,14 @@ class CustomVpcStack(cdk.Stack):
             ]
         )
 
+        cdk.Tags.of(custom_vpc).add("Owner", self.node.try_get_context('envs')['prod']['admin'])
+        # cdk.Tag("Owner", "Sid")
+
         cdk.CfnOutput(self,
                       "customVpcIdOutput",
                       value=custom_vpc.vpc_id,
                       export_name="customVpcId"
                       )
+
+        my_bkt = cdk.aws_s3.Bucket(self, "customBktId")
+        cdk.Tags.of(my_bkt).add("Admin", "Siddharth")

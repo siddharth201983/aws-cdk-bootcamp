@@ -21,6 +21,8 @@
         "account": "751021670495"
       },
       "prod": {
+        "admin": "Sid",
+        "email": "siddhanal@gmail.com",
         "region": "us-east-1",
         "account": "751021670495",
         "encryption": true,
