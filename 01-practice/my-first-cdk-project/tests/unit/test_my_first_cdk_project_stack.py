@@ -4,7 +4,7 @@ import aws_cdk.assertions as assertions
 from my_first_cdk_project.my_first_cdk_project_stack import MyFirstCdkProjectStack
 
 # example tests. To run these tests, uncomment this file along with the example
-# resource in my_first_cdk_project/my_first_cdk_project_stack.py
+# resource in my_first_cdk_project/my_first_cdk_project_stack_1.txt
 def test_sqs_queue_created():
     app = core.App()
     stack = MyFirstCdkProjectStack(app, "my-first-cdk-project")
