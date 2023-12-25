@@ -15,8 +15,8 @@ class MyArtifactBucketStack(cdk.Stack):
 
         # The code that defines your stack goes here
 
-        print(self.node.try_get_context('prod')['region'])
-
+        # print(self.node.try_get_context('prod')['region'])
+        # cdk.aws_kms.Key.from_key_arn(self, "myKeyId", "")
         if is_prod:
             cdk.aws_s3.Bucket(self,
                               "myProdArtifactBucketId",
