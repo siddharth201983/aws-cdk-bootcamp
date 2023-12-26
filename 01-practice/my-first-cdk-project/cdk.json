@@ -27,7 +27,7 @@
         "account": "751021670495",
         "encryption": true,
         "vpc_configs": {
-          "vpc_cidr": "10.101.0.0/20",
+          "vpc_cidr": "10.83.0.0/20",
           "cidr_mask": 24,
           "set_reserve": false
         }
