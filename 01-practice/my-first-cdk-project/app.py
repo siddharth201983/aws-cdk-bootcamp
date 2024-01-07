@@ -14,7 +14,9 @@ import aws_cdk as cdk
 
 # from resource_stacks.custom_parameters_stack import CustomParametersSecretsStack
 
-from resource_stacks.custom_iam_users_groups import CustomIamUsersGroupsStack
+# from resource_stacks.custom_iam_users_groups import CustomIamUsersGroupsStack
+
+from resource_stacks.custom_iam_roles_policies import CustomRolesPoliciesStack
 
 app = cdk.App()
 
@@ -34,7 +36,9 @@ env = cdk.Environment(account=app.node.try_get_context('envs')['prod']['account'
 
 # CustomParametersSecretsStack(app, "my-ssm-params-stack", env=env)
 
-CustomIamUsersGroupsStack(app, "my-iam-users-groups-stack", env=env)
+# CustomIamUsersGroupsStack(app, "my-iam-users-groups-stack", env=env)
+
+CustomRolesPoliciesStack(app, "my-iam-roles-policies-stack", env=env)
 
 cdk.Tags.of(app).add("Email", app.node.try_get_context('envs')['prod']['email'])
 
