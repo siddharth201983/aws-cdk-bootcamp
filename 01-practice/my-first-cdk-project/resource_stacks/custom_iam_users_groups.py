@@ -1,72 +1,49 @@
 import aws_cdk as cdk
 from constructs import Construct
-import json
 
 
 class CustomIamUsersGroupsStack(cdk.Stack):
 
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
-        super().__init__(scope, construct_id, **kwargs)
+    def __init__(self, scope: Construct, id: str, **kwargs) -> None:
+        super().__init__(scope, id, **kwargs)
         
-        # AWS Secrets & SSM parameters
-        param1 = cdk.aws_ssm.StringParameter(
+        # AWS IAM User Groups
+        user1_pass = cdk.aws_secretsmanager.Secret(
             self,
-            "parameter1",
-            description="Load Testing Configuration",
-            parameter_name="NoOfConcurrentUsers",
-            string_value="100",
-            tier=cdk.aws_ssm.ParameterTier.STANDARD,
+            "user1pass",
+            description="Password for User1",
+            secret_name="user1_pass"
         )
         
-        param2 = cdk.aws_ssm.StringParameter(
-            self,
-            "parameter2",
-            description="Load Testing Configuration",
-            parameter_name="/locust/configs/NoOfConcurrentUsers",
-            string_value="100",
-            tier=cdk.aws_ssm.ParameterTier.STANDARD,
-        )
+        # Add User1 with SecretsManager Password
+        user1 = cdk.aws_iam.User(self,
+                                 "user1",
+                                 password=user1_pass.secret_value,
+                                 user_name="user1"
+                                 )
         
-        param3 = cdk.aws_ssm.StringParameter(
-            self,
-            "parameter3",
-            description="Load Testing Configuration",
-            parameter_name="/locust/configs/DurationInSec",
-            string_value="300",
-            tier=cdk.aws_ssm.ParameterTier.STANDARD,
-        )
+        # Add User2 with Literal Password
+        user2 = cdk.aws_iam.User(self,
+                                 "user2",
+                                 password=cdk.SecretValue.unsafe_plain_text(
+                                     "D0nt-Use-B@d-Passw0rds"),
+                                 user_name="user2"
+                                 )
         
-        secret1 = cdk.aws_secretsmanager.Secret(
-            self,
-            "secret1",
-            description="Customer DB password",
-            secret_name="cust_db_pass"
-        )
+        # Add IAM Group
+        user_group1 = cdk.aws_iam.Group(self,
+                                        "user_group1",
+                                        group_name="user_group1"
+                                        )
         
-        templated_secret = cdk.aws_secretsmanager.Secret(
-            self,
-            "templated_secret",
-            description="Customer DB password in the form of templated secret",
-            secret_name="cust_secret_attrobute",
-            generate_secret_string=cdk.aws_secretsmanager.SecretStringGenerator(
-                secret_string_template=json.dumps(
-                    {"username": "user1"}
-                ),
-            generate_string_key="secret_password"
-            )
-        )
+        # Add user2 in group1
+        user_group1.add_user(user2)
         
-        cdk.CfnOutput(
-            self,
-            "param1Output",
-            description="NoOfConcurrentUsers",
-            value=f"{param1.string_value}",
-        )
+        # User Login URL Autogeneration
+        output_1 = cdk.CfnOutput(self,
+                                 "user2LoginUrl",
+                                 description="Login URL for User2",
+                                 value=f"https://{cdk.Aws.ACCOUNT_ID}.signin.aws.amazon.com/console"
+                                 )
         
-        cdk.CfnOutput(
-            self,
-            "secret1Output",
-            description="secret1",
-            value=f"{secret1.secret_value}",
-        )
         
