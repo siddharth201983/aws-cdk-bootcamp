@@ -23,7 +23,6 @@ class CustomS3ResourcePolicyStack(cdk.Stack):
                 resources=[my_s3_bkt.arn_for_objects("*.html")],
                 principals=[cdk.aws_iam.AnyPrincipal()]
             )
-            
         )
         
         my_s3_bkt.add_to_resource_policy(
