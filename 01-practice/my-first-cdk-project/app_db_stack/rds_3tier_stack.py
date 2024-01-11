@@ -1,6 +1,5 @@
 import aws_cdk as cdk
 from constructs import Construct
-import json
 
 class RdsDatabase3TierStack(cdk.Stack):
     def __init__(self, scope: Construct, construct_id: str, vpc, asg_security_groups, **kwargs) -> None:
